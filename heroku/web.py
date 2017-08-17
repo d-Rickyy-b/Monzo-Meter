@@ -20,6 +20,11 @@ port = int(os.environ.get("PORT"))
 # Fill in your token and id you get from the particle.io website
 particle_token = "<your_token>"
 device_id = "<your_id>"
+max_bal = 1000
+FIXED_MAX = 0
+VARIABLE_MAX = 1
+
+mode = FIXED_MAX
 
 @app.route('/')
 def hello():
@@ -37,17 +42,21 @@ def peak():
 def catch():
     j = json.loads(request.data)
     data = j['data']
-    if data['is_load'] == True:
-	    # If you put money onto your account, save the amount of money as peak
-        r.set("peak", int(data['account_balance']))
-        r.set("balance", int(data['account_balance']))
-    else:
-		# If money is withdrawn OR in case of refunds or chargebacks the peak won't be set
-        r.set("balance", data['account_balance'])
-		
-        if int(data['account_balance']) > int(r.get('peak')):
-		    # Only if the current balance is greater than the saved peak, save it as peak
+    if mode == VARIABLE_MAX:
+        if data['is_load'] == True:
+            # If you put money onto your account, save the amount of money as peak
             r.set("peak", int(data['account_balance']))
+            r.set("balance", int(data['account_balance']))
+        else:
+            # If money is withdrawn OR in case of refunds or chargebacks the peak won't be set
+            r.set("balance", int(data['account_balance']))
+            
+            if int(data['account_balance']) > int(r.get('peak')):
+                # Only if the current balance is greater than the saved peak, save it as peak
+                r.set("peak", int(data['account_balance']))
+    else:
+        r.set("balance", int(data['account_balance']))
+		r.set("peak", max_bal)
 
     notify_particle()
     return "{} | {}".format(r.get("balance"), r.get("peak"))
