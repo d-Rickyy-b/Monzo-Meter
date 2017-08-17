@@ -62,7 +62,7 @@ def notify_particle():
 
 def angle(hwm, bal):
     # Calculate the angle with the values of "balance" and "peak"
-    return int(180-(float(bal)/float(hwm)*180))
+    return int((float(bal)/float(hwm))*180)
 
 if __name__ == '__main__':
     # The app is not bound to an interface. If it should, specify it under "host"
