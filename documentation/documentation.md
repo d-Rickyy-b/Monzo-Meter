@@ -1,22 +1,43 @@
 # Documentation
 
-This instruction was made for building a custom "Monzo-Meter" - a small device for showing your current balance of your Monzo account. This idea comes from Simon Vans-Colina - he thought about a problem everyone seems to know:
+This instruction was made for building a custom "Monzo-Meter" - a small device for showing your current balance of your Monzo bank account. This idea comes from Simon Vans-Colina - he thought about a problem everyone seems to know:
 >One particular piece of information that's important to just about everyone, is *“how much of my pay is still in my bank account”*.
 
 This documentation provides you with all the code. All you need is the hardware. It is divided into six major parts.
+
+You may see references to "Mondo" throughout this and linked documentation.  Mondo changed it's name to Monzo in early 2017.
 
 Credits are going to [Simon Vans-Colina](https://medium.com/@simonvc) and his amazing instructions in [his article](https://medium.com/@simonvc/the-internet-of-things-that-connect-to-your-bank-account-ab8a6a2a44d7) which gave me the idea for this project.
 
 Disclaimer: Monzo is currently only available in the UK.
 
+Supportive links:
+
+- Monzo Customer Forum - https://community.monzo.com
+- Monzo Developer Slack Channel - https://devslack.getmondo.co.uk
+
 ### Step Zero: Buying the Hardware
+
 Here's a list of things you'll need:
-- [Photon µC](https://store.particle.io/) (19$)
-- 9g digital micro server (anologue wont work)
+- [Photon µC](https://store.particle.io/) (19$) - You can buy the Photon with or without headers, I bought the one with headers so that I could mock the project up on breadboard first
+- 9g digital micro servo (anologue wont work)
+- Power supply - I used a standard iPhone wall adapter with a USB Type A to USB Micro B lead
+- Placeholder - Final hardware to make it into a "Gauge"
+- Sundries - If you bought the Photon with headers you will need a small breadboard and some Dupont male to male jumper wires. If not, some wire, a soldering iron and some solder
 
 ### Step One: Wiring up the Hardware
 
+The servo has three wires:
+- Red - Power
+- Brown - Ground
+- Orange - Data
 
+Connect them to the Photon as follows:
+- Red - VIN
+- Brown - GND
+- Orange - A4
+
+Connect the Photon to your power supply to the on-board USB Micro B Connector.
 
 ### Step Two: Power up Particle.io
 
