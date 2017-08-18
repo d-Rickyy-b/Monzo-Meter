@@ -1,4 +1,5 @@
-# Documentation
+Documentation
+===
 
 This instruction was made for building a custom "Monzo-Meter" - a small device for showing your current balance of your Monzo account. This idea comes from Simon Vans-Colina - he thought about a problem everyone seems to know:
 >One particular piece of information that's important to just about everyone, is *“how much of my pay is still in my bank account”*.
@@ -8,17 +9,20 @@ This documentation provides you with all the code. All you need is the hardware.
 Credits are going to [Simon Vans-Colina](https://medium.com/@simonvc) and his amazing instructions in [his article](https://medium.com/@simonvc/the-internet-of-things-that-connect-to-your-bank-account-ab8a6a2a44d7) which gave me the idea for this project.
 
 Disclaimer: Monzo is currently only available in the UK.
-
-### Step Zero: Buying the Hardware
+___
+Step Zero: Buying the Hardware
+===
 Here's a list of things you'll need:
 - [Photon µC](https://store.particle.io/) (19$)
 - 9g digital micro server (anologue wont work)
 
-### Step One: Wiring up the Hardware
+Step One: Wiring up the Hardware
+===
 
 
 
-### Step Two: Power up Particle.io
+Step Two: Power up Particle.io
+===
 
 1. Get yourself a [Particle.io](https://www.particle.io/) account
 2. Open their [Console](https://console.particle.io/devices) and register your Photon µC - **note down the Device ID**
@@ -27,8 +31,8 @@ Here's a list of things you'll need:
 
    ![particle-code](https://raw.githubusercontent.com/d-Rickyy-b/Monzo-Meter/master/documentation/images/particle.io_token.png)
 
-### Step Three: Getting Heroku
-
+Step Three: Getting Heroku
+===
 1. You'll first need to create an account on [Heroku](https://www.heroku.com/).
 2. When this is done go ahead and [Download the CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 3. Login with the Heroku CLI (enter your credentials):
@@ -62,8 +66,8 @@ Here's a list of things you'll need:
 
 That's basically everything you need to do on the heroku part.
 
-### Step Four: Get Monzo & SetUp
-
+Step Four: Get Monzo & SetUp
+===
 1. Register an account on [Monzo](https://monzo.com/)
 2. Head to the [API Playground](https://developers.monzo.com/)
 3. Note down your **Account ID**
@@ -86,5 +90,6 @@ $ curl -X POST \
 ```
 When you have done this, the webhook should be set up. You'll now get all transactions as a POST to the python app on Heroku.
 
-### Step Five: Customize
+Step Five: Customize
+===
 You can set a custom "max"
