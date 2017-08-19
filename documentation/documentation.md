@@ -9,7 +9,7 @@ You may see references to "Mondo" throughout this and linked documentation.  Mon
 
 Credits are going to [Simon Vans-Colina](https://medium.com/@simonvc) and his amazing instructions in [his article](https://medium.com/@simonvc/the-internet-of-things-that-connect-to-your-bank-account-ab8a6a2a44d7) which gave me the idea for this project.
 
-Disclaimer: Monzo is currently only available in the UK.
+Disclaimer: Monzo is currently only available in the UK.  You will need either a prepaid or current account with Monzo to complete this project.
 
 Supportive links:
 
