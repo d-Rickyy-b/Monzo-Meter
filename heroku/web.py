@@ -57,17 +57,17 @@ def catch():
     if mode == VARIABLE_MAX:
         if data['is_load']:
             # If you put money onto your account, save the amount of money as peak
-            r.set("peak", int(data['account_balance']))
-            r.set("balance", int(data['account_balance']))
+            r.set("peak", int(data['amount']))
+            r.set("balance", int(r.get("balance")) + int(data['amount']))
         else:
             # If money is withdrawn OR in case of refunds or chargebacks the peak won't be set
-            r.set("balance", int(data['account_balance']))
+            r.set("balance", int(r.get("balance")) + int(data['amount']))
 
-            if int(data['account_balance']) > int(r.get('peak')):
+            if int(data['amount']) > int(r.get("peak")):
                 # Only if the current balance is greater than the saved peak, save it as peak
-                r.set("peak", int(data['account_balance']))
+                r.set("peak", int(data['amount']))
     else:
-        r.set("balance", int(data['account_balance']))
+        r.set("balance", int(r.get("balance")) + int(data['amount']))
         r.set("peak", max_bal)
 
     notify_particle()
