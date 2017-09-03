@@ -80,9 +80,9 @@ def refresh():
 
 def notify_particle():
     # The particle device get's notified about changes here
-    peak = r.get("peak")
-    balance = r.get("balance")
-    data = {"access_token": particle_token, "arg": angle(peak, balance)}
+    peak_v = r.get("peak")
+    balance_v = r.get("balance")
+    data = {"access_token": particle_token, "arg": angle(peak_v, balance_v)}
     req = requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
     return
 
