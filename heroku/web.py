@@ -82,8 +82,8 @@ def refresh():
 
 def notify_particle():
     # The particle device gets notified about changes here
-    peak_v = r.get("peak")
-    balance_v = r.get("balance")
+    peak_v = float(r.get("peak"))
+    balance_v = float(r.get("balance"))
 
     # If the balance exceeds the peak/below 0, then the servo/needle might break.
     # Because of this, the angle's value gets checked before sending to particle.io
