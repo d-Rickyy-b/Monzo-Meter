@@ -34,24 +34,36 @@ VARIABLE_MAX = 1
 
 mode = FIXED_MAX
 
+# Choose a password. It is used to allow http(s) requests from monzo (or users knowing the pw) only
+password = "123456"
+
 
 @app.route('/')
 def hello():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
     return "{} | {}".format(r.get("balance"), r.get("peak"))
 
 
 @app.route('/balance')
 def balance():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
     return "{}".format(r.get("balance"))
 
 
 @app.route('/peak')
 def peak():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
     return "{}".format(r.get("peak"))
 
 
 @app.route('/catch', methods=['POST'])
 def catch():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
+
     j = json.loads(request.data)
     data = j['data']
     if mode == VARIABLE_MAX:
@@ -76,14 +88,17 @@ def catch():
 
 @app.route('/refresh')
 def refresh():
-    notify_particle()
-    return "{} | {}".format(r.get("balance"), r.get("peak"))
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
+
+    angle_v = notify_particle()
+    return "Set angle to {}°".format(angle_v)
 
 
 def notify_particle():
-    # The particle device get's notified about changes here
-    peak_v = r.get("peak")
-    balance_v = r.get("balance")
+    # The particle device gets notified about changes here
+    peak_v = float(r.get("peak"))
+    balance_v = float(r.get("balance"))
 
     # If the balance exceeds the peak/below 0, then the servo/needle might break.
     # Because of this, the angle's value gets checked before sending to particle.io
@@ -92,9 +107,10 @@ def notify_particle():
     elif balance_v < 0:
         balance_v = 0
 
-    data = {"access_token": particle_token, "arg": angle(peak_v, balance_v)}
+    angle_v = angle(peak_v, balance_v)
+    data = {"access_token": particle_token, "arg": angle_v}
     requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
-    return
+    return angle_v
 
 
 def angle(pea, bal):
@@ -104,6 +120,10 @@ def angle(pea, bal):
 
     # 90 degrees: (` . ´)
     return int(45 + (((float(pea) - float(bal)) / float(pea)) * 90))
+
+
+def authenticate(provided_pw):
+    return provided_pw == password
 
 
 if __name__ == '__main__':
