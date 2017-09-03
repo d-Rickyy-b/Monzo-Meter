@@ -81,7 +81,7 @@ def refresh():
 
 
 def notify_particle():
-    # The particle device get's notified about changes here
+    # The particle device gets notified about changes here
     peak_v = r.get("peak")
     balance_v = r.get("balance")
 
