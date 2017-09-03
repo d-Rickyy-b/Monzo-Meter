@@ -62,7 +62,7 @@ def catch():
                 r.set("peak", int(data['account_balance']))
     else:
         r.set("balance", int(data['account_balance']))
-		r.set("peak", max_bal)
+        r.set("peak", max_bal)
 
     notify_particle()
     return "{} | {}".format(r.get("balance"), r.get("peak"))
