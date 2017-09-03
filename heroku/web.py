@@ -76,8 +76,8 @@ def catch():
 
 @app.route('/refresh')
 def refresh():
-    notify_particle()
-    return "{} | {}".format(r.get("balance"), r.get("peak"))
+    angle_v = notify_particle()
+    return "Set angle to {}°".format(angle_v)
 
 
 def notify_particle():
