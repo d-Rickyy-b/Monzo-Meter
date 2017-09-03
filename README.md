@@ -8,4 +8,6 @@ All you need is about **1-3 hours time** (depending on your skills), the **hardw
 If you are stuck somewhere, don't hesitate to create a GitHub issue or send me a [Telegram Message](https://t.me/d_Rickyy_b).
 ___
 
+![Payday](https://github.com/d-Rickyy-b/Monzo-Meter/blob/master/documentation/images/payday.gif)
+
 <img src="https://raw.githubusercontent.com/d-Rickyy-b/Monzo-Meter/master/documentation/images/monzo-meter_in_action.jpg" alt="Monzo-Meter in Action" data-canonical-src="https://raw.githubusercontent.com/d-Rickyy-b/Monzo-Meter/master/documentation/images/monzo-meter_in_action.jpg" width="500" />
