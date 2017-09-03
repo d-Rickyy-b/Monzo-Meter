@@ -84,6 +84,14 @@ def notify_particle():
     # The particle device get's notified about changes here
     peak_v = r.get("peak")
     balance_v = r.get("balance")
+
+    # If the balance exceeds the peak/below 0, then the servo/needle might break.
+    # Because of this, the angle's value gets checked before sending to particle.io
+    if balance_v > peak_v:
+        balance_v = peak_v
+    elif balance_v < 0:
+        balance_v = 0
+
     data = {"access_token": particle_token, "arg": angle(peak_v, balance_v)}
     requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
     return
