@@ -15,7 +15,7 @@ app.debug = True
 # This script takes the "REDIS_URL" and the "PORT" out of the environment variables
 # Heroku expects an app to bind to a port announced as an env var.
 # If you prefer to test on your local machine, make sure these env vars are set
-# or exchange them in the code yourself.
+# or change the values in the code yourself.
 r = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 port = int(os.environ.get("PORT"))
 
