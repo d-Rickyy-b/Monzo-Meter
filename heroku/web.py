@@ -92,9 +92,10 @@ def notify_particle():
     elif balance_v < 0:
         balance_v = 0
 
-    data = {"access_token": particle_token, "arg": angle(peak_v, balance_v)}
+    angle_v = angle(peak_v, balance_v)
+    data = {"access_token": particle_token, "arg": angle_v}
     requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
-    return
+    return angle_v
 
 
 def angle(pea, bal):
