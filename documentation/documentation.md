@@ -20,10 +20,10 @@ Supportive links:
 
 Here's a list of things you'll need:
 - [Photon µC](https://store.particle.io/) (19$) - You can buy the Photon with or without headers, I bought the one with headers so that I could mock the project up on breadboard first
-- 9g digital micro servo (anologue wont work)
+- 9g digital micro servo (anologue wont work and beware of knock offs on eBay which either aren't digital even though they say they are or suffer from constant "flutter" - I had good results with this one http://www.servoshop.co.uk/index.php?pid=SG90G&area=Servo
 - Power supply - I used a standard iPhone wall adapter with a USB Type A to USB Micro B lead
-- Placeholder - Final hardware to make it into a "Gauge"
-- Sundries - If you bought the Photon with headers you will need a small breadboard and some Dupont male to male jumper wires. If not, some wire, a soldering iron and some solder
+- Gauge Hardware - This one is up to you, in our example we purchased a fuel guage from eBay, removed the internals and refitted our hardware into the housing.  Alternatively, you could mount it all in a small project box or 3D print your own housing.
+- Sundries - If you bought the Photon with headers you will need a small breadboard and some Dupont male to male jumper wires. If not, some wire, a soldering iron and some solder.  Some general handtools will also be required and a hot glue gun will come in handy.
 
 ### Step One: Wiring up the Hardware
 
@@ -87,7 +87,7 @@ That's basically everything you need to do on the heroku part.
 
 1. Register an account on [Monzo](https://monzo.com/)
 2. Head to the [API Playground](https://developers.monzo.com/)
-3. Note down your **Account ID**
+3. Note down your **Account ID** (note if you are using the Monzo current account Vs. Prepaid account you will need to Get /accounts?account_type=uk_retail to obtain your CA ID)
 
 ![API Playgrounds](https://raw.githubusercontent.com/d-Rickyy-b/Monzo-Meter/master/documentation/images/api_playgrounds.png)
 
