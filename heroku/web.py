@@ -2,11 +2,13 @@
 # Python monzo-meter app on Heroku
 # -*- coding: utf-8 -*-
 
+import json
 import os
+
+import redis
 import requests
 from flask import Flask, request
-import redis
-import json
+
 app = Flask(__name__)
 app.debug = True
 
