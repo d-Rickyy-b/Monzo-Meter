@@ -22,14 +22,16 @@ port = int(os.environ.get("PORT"))
 # Fill in your token and id you get from the particle.io website
 particle_token = "<your_token>"
 device_id = "<your_id>"
-# This value's unit is cents (hence the '*100')
+
+# The max_bal value's unit is cents (hence the '*100'). So 1000 * 100 equals 1000 GBP
 max_bal = 1000 * 100
-FIXED_MAX = 0
-VARIABLE_MAX = 1
 
 # Set the mode to the desired mode.
 # FIXED_MAX    = maximum angle equivalents to a preset amount of money
 # VARIABLE_MAX = maximum angle equivalents to the latest amount of load
+FIXED_MAX = 0
+VARIABLE_MAX = 1
+
 mode = FIXED_MAX
 
 
