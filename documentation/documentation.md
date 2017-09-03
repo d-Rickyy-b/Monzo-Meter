@@ -1,4 +1,5 @@
-# Documentation
+Documentation
+===
 
 This instruction was made for building a custom "Monzo-Meter" - a small device for showing your current balance of your Monzo bank account. This idea comes from Simon Vans-Colina - he thought about a problem everyone seems to know:
 >One particular piece of information that's important to just about everyone, is *“how much of my pay is still in my bank account”*.
@@ -16,7 +17,9 @@ Supportive links:
 - Monzo Customer Forum - https://community.monzo.com
 - Monzo Developer Slack Channel - https://devslack.getmondo.co.uk
 
-### Step Zero: Buying the Hardware
+___
+Step Zero: Buying the Hardware
+===
 
 Here's a list of things you'll need:
 - [Photon µC](https://store.particle.io/) (19$) - You can buy the Photon with or without headers, I bought the one with headers so that I could mock the project up on breadboard first
@@ -25,7 +28,8 @@ Here's a list of things you'll need:
 - Gauge Hardware - This one is up to you, in our example we purchased a fuel guage from eBay, removed the internals and refitted our hardware into the housing.  Alternatively, you could mount it all in a small project box or 3D print your own housing.
 - Sundries - If you bought the Photon with headers you will need a small breadboard and some Dupont male to male jumper wires. If not, some wire, a soldering iron and some solder.  Some general handtools will also be required and a hot glue gun will come in handy.
 
-### Step One: Wiring up the Hardware
+Step One: Wiring up the Hardware
+===
 
 The servo has three wires:
 - Red - Power
@@ -39,7 +43,8 @@ Connect them to the Photon as follows:
 
 Connect the Photon to your power supply to the on-board USB Micro B Connector.
 
-### Step Two: Power up Particle.io
+Step Two: Power up Particle.io
+===
 
 1. Get yourself a [Particle.io](https://www.particle.io/) account
 2. Open their [Console](https://console.particle.io/devices) and register your Photon µC - **note down the Device ID**
@@ -48,7 +53,8 @@ Connect the Photon to your power supply to the on-board USB Micro B Connector.
 
    ![particle-code](https://raw.githubusercontent.com/d-Rickyy-b/Monzo-Meter/master/documentation/images/particle.io_token.png)
 
-### Step Three: Getting Heroku
+Step Three: Getting Heroku
+===
 
 1. You'll first need to create an account on [Heroku](https://www.heroku.com/).
 2. When this is done go ahead and [Download the CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
@@ -83,7 +89,8 @@ Connect the Photon to your power supply to the on-board USB Micro B Connector.
 
 That's basically everything you need to do on the heroku part.
 
-### Step Four: Get Monzo & SetUp
+Step Four: Get Monzo & SetUp
+===
 
 1. Register an account on [Monzo](https://monzo.com/)
 2. Head to the [API Playground](https://developers.monzo.com/)
@@ -107,5 +114,7 @@ $ curl -X POST \
 ```
 When you have done this, the webhook should be set up. You'll now get all transactions as a POST to the python app on Heroku.
 
-### Step Five: Customize
+Step Five: Customize
+===
+
 You can set a custom "max"
