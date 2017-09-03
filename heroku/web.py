@@ -53,7 +53,7 @@ def catch():
     j = json.loads(request.data)
     data = j['data']
     if mode == VARIABLE_MAX:
-        if data['is_load'] == True:
+        if data['is_load']:
             # If you put money onto your account, save the amount of money as peak
             r.set("peak", int(data['account_balance']))
             r.set("balance", int(data['account_balance']))
