@@ -83,7 +83,7 @@ def notify_particle():
     peak_v = r.get("peak")
     balance_v = r.get("balance")
     data = {"access_token": particle_token, "arg": angle(peak_v, balance_v)}
-    req = requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
+    requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
     return
 
 
