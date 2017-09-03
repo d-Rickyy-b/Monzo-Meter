@@ -23,7 +23,7 @@ port = int(os.environ.get("PORT"))
 particle_token = "<your_token>"
 device_id = "<your_id>"
 # This value's unit is cents (hence the '*100')
-max_bal = 1000*100
+max_bal = 1000 * 100
 FIXED_MAX = 0
 VARIABLE_MAX = 1
 
@@ -32,17 +32,21 @@ VARIABLE_MAX = 1
 # VARIABLE_MAX = maximum angle equivalents to the latest amount of load
 mode = FIXED_MAX
 
+
 @app.route('/')
 def hello():
     return "{} | {}".format(r.get("balance"), r.get("peak"))
+
 
 @app.route('/balance')
 def balance():
     return "{}".format(r.get("balance"))
 
+
 @app.route('/peak')
 def peak():
     return "{}".format(r.get("peak"))
+
 
 @app.route('/catch', methods=['POST'])
 def catch():
@@ -56,7 +60,7 @@ def catch():
         else:
             # If money is withdrawn OR in case of refunds or chargebacks the peak won't be set
             r.set("balance", int(data['account_balance']))
-            
+
             if int(data['account_balance']) > int(r.get('peak')):
                 # Only if the current balance is greater than the saved peak, save it as peak
                 r.set("peak", int(data['account_balance']))
@@ -67,6 +71,7 @@ def catch():
     notify_particle()
     return "{} | {}".format(r.get("balance"), r.get("peak"))
 
+
 def notify_particle():
     # The particle device get's notified about changes here
     peak = r.get("peak")
@@ -75,11 +80,12 @@ def notify_particle():
     req = requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
     return
 
+
 def angle(hwm, bal):
     # Calculate the angle with the values of "balance" and "peak"
-    return int((float(bal)/float(hwm))*180)
+    return int((float(bal) / float(hwm)) * 180)
+
 
 if __name__ == '__main__':
     # The app is not bound to an interface. If it should, specify it under "host"
     app.run(host='0.0.0.0', port=port)
-
