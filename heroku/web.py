@@ -34,24 +34,36 @@ VARIABLE_MAX = 1
 
 mode = FIXED_MAX
 
+# Choose a password. It is used to allow http(s) requests from monzo (or users knowing the pw) only
+password = "123456"
+
 
 @app.route('/')
 def hello():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
     return "{} | {}".format(r.get("balance"), r.get("peak"))
 
 
 @app.route('/balance')
 def balance():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
     return "{}".format(r.get("balance"))
 
 
 @app.route('/peak')
 def peak():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
     return "{}".format(r.get("peak"))
 
 
 @app.route('/catch', methods=['POST'])
 def catch():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
+
     j = json.loads(request.data)
     data = j['data']
     if mode == VARIABLE_MAX:
@@ -76,6 +88,9 @@ def catch():
 
 @app.route('/refresh')
 def refresh():
+    if not authenticate(request.args.get('key')):
+        return "Wrong password provided"
+
     angle_v = notify_particle()
     return "Set angle to {}°".format(angle_v)
 
@@ -105,6 +120,10 @@ def angle(pea, bal):
 
     # 90 degrees: (` . ´)
     return int(45 + (((float(pea) - float(bal)) / float(pea)) * 90))
+
+
+def authenticate(provided_pw):
+    return provided_pw == password
 
 
 if __name__ == '__main__':
