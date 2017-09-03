@@ -72,6 +72,12 @@ def catch():
     return "{} | {}".format(r.get("balance"), r.get("peak"))
 
 
+@app.route('/refresh')
+def refresh():
+    notify_particle()
+    return "{} | {}".format(r.get("balance"), r.get("peak"))
+
+
 def notify_particle():
     # The particle device get's notified about changes here
     peak = r.get("peak")
