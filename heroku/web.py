@@ -131,6 +131,12 @@ def angle(pea, bal):
     return int(45 + (((float(pea) - float(bal)) / float(pea)) * 90))
 
 
+def getRedisValue(val_name):
+    value = r.get(val_name)
+    if value is None:
+        r.set(val_name, 0)
+        return 0
+    return value
 
 if __name__ == '__main__':
     # The app is not bound to an interface. If it should, specify it under "host"
