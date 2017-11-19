@@ -77,16 +77,16 @@ def catch():
         if data['is_load']:
             # If you put money onto your account, save the amount of money as peak
             r.set("peak", int(data['amount']))
-            r.set("balance", int(r.get("balance")) + int(data['amount']))
+            r.set("balance", int(getRedisValue("balance")) + int(data['amount']))
         else:
             # If money is withdrawn OR in case of refunds or chargebacks the peak won't be set
-            r.set("balance", int(r.get("balance")) + int(data['amount']))
+            r.set("balance", int(getRedisValue("balance")) + int(data['amount']))
 
-            if int(data['amount']) > int(r.get("peak")):
+            if int(data['amount']) > int(getRedisValue("peak")):
                 # Only if the current balance is greater than the saved peak, save it as peak
                 r.set("peak", int(data['amount']))
     else:
-        r.set("balance", int(r.get("balance")) + int(data['amount']))
+        r.set("balance", int(getRedisValue("balance")) + int(data['amount']))
         r.set("peak", max_bal)
 
     notify_particle()
@@ -102,8 +102,8 @@ def refresh():
 
 def notify_particle():
     # The particle device gets notified about changes here
-    peak_v = float(r.get("peak"))
-    balance_v = float(r.get("balance"))
+    peak_v = float(getRedisValue("peak"))
+    balance_v = float(getRedisValue("balance"))
 
     # If the balance exceeds the peak/below 0, then the servo/needle might break.
     # Because of this, the angle's value gets checked before sending to particle.io
