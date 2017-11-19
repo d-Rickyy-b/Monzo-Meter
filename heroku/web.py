@@ -7,6 +7,7 @@ import os
 
 import redis
 import requests
+from functools import wraps
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -36,6 +37,17 @@ mode = FIXED_MAX
 
 # Choose a password. It is used to allow http(s) requests from monzo (or users knowing the pw) only
 password = "123456"
+
+
+def requires_auth(func):
+    @wraps(func)
+    def check_pw(*args, **kwargs):
+        if not request.args.get('key') == password:
+            return "Wrong password provided"
+
+        return func(*args, **kwargs)
+
+    return check_pw
 
 
 @app.route('/')
