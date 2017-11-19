@@ -112,6 +112,10 @@ def notify_particle():
     elif balance_v < 0:
         balance_v = 0
 
+    # Prevent division by zero
+    if peak_v <= 0:
+        peak_v = 1
+
     angle_v = angle(peak_v, balance_v)
     data = {"access_token": particle_token, "arg": angle_v}
     requests.post("https://api.particle.io/v1/devices/{}/gotoPos".format(device_id), data=data)
