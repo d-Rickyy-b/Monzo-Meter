@@ -51,31 +51,26 @@ def requires_auth(func):
 
 
 @app.route('/')
+@requires_auth
 def hello():
-    if not authenticate(request.args.get('key')):
-        return "Wrong password provided"
     return "{} | {}".format(r.get("balance"), r.get("peak"))
 
 
 @app.route('/balance')
+@requires_auth
 def balance():
-    if not authenticate(request.args.get('key')):
-        return "Wrong password provided"
     return "{}".format(r.get("balance"))
 
 
 @app.route('/peak')
+@requires_auth
 def peak():
-    if not authenticate(request.args.get('key')):
-        return "Wrong password provided"
     return "{}".format(r.get("peak"))
 
 
 @app.route('/catch', methods=['POST'])
+@requires_auth
 def catch():
-    if not authenticate(request.args.get('key')):
-        return "Wrong password provided"
-
     j = json.loads(request.data)
     data = j['data']
     if mode == VARIABLE_MAX:
@@ -99,10 +94,8 @@ def catch():
 
 
 @app.route('/refresh')
+@requires_auth
 def refresh():
-    if not authenticate(request.args.get('key')):
-        return "Wrong password provided"
-
     angle_v = notify_particle()
     return "Set angle to {}°".format(angle_v)
 
@@ -133,9 +126,6 @@ def angle(pea, bal):
     # 90 degrees: (` . ´)
     return int(45 + (((float(pea) - float(bal)) / float(pea)) * 90))
 
-
-def authenticate(provided_pw):
-    return provided_pw == password
 
 
 if __name__ == '__main__':
