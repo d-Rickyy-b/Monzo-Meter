@@ -11,7 +11,7 @@ from functools import wraps
 from flask import Flask, request
 
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 
 # This script takes the "REDIS_URL" and the "PORT" out of the environment variables
 # Heroku expects an app to bind to a port announced as an env var.
